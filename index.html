@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        sdfgdfg
+        function choose() {
+            value = prompt(
+                "Введите номер задания\n1. Задать температуру в градусах по Цельсию\n2. Работа с переменными.\n3. Объявить две переменные: admin и name.\n4. Чему будет равно 1000 + '108'\n5. Самостоятельно разобраться с async и defer\n0 - выход"
+            );
+            value = parseInt(value);
+            switch (value) {
+                case 1:
+                    check();
+                    choose();
+                    break;
+                case 2:
+                    alert("Поработал");
+                    choose();
+                    break;
+                case 3:
+                    let admin, name;
+                    name = prompt("Переменная name: Введите 'Василий'");
+                    admin = name;
+                    alert("Переменная admin равна " + admin);
+                    choose();
+                    break;
+                case 4:
+                    let number = 1000 + '108';
+                    alert("1000 + '108' равно " + number);
+                    choose();
+                    break;
+                case 5:
+                    alert(
+                        "defer - загрузка скрипта после загрузки html страницы\nasync - загрузка асинхронно, т.е. браузеру нет необходимости останавливаться на теге script"
+                    );
+                    choose();
+                    break;
+                case 0:
+                    break;
+                default:
+                    alert("Неверный ввод числа");
+                    choose();
+            }
+        }
+        choose();
+
+        function check() {
+            let c = prompt("Введите температуру в граудсах Цельсия (целое число)", 100);
+            if (c == "") {
+                alert("Ввод пустой строки недопустим");
+                check();
+            } else if (isNaN(c)) {
+                alert("Введите число");
+                check();
+            } else {
+                let f = 9 / 5 * c + 32;
+                alert("Равнозначная температура по Фаренгейту равна " + f + " градусов");
+            }
+        }
+    </script>
+</body>
+
+</html>
