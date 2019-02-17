@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson 2</title>
+</head>
+<body>
+    <script async>
+        let value;
+        function choose() {
+            value = 0;
+            value = parseInt(prompt("Выберите номер задания:\n"+
+            "0 - выход\n"+
+            "1. Почему код дает именно такие результаты?\n"+
+
+            "2. Чему будет равен x?\n"+
+
+            "3. Объявить две целочисленные переменные — a и b и задать им произвольные начальные значения."+ 
+            "Затем написать скрипт, который работает по следующему принципу:"+
+            "если a и b положительные, вывести их разность;"+
+            "если а и b отрицательные, вывести их произведение;"+
+            "если а и b разных знаков, вывести их сумму;\n"+
+
+            "4. Присвоить переменной а значение в промежутке [0..15]."+
+            "С помощью оператора switch организовать вывод чисел от a до 15.\n"+
+
+            "5. Реализовать четыре основные арифметические операции в виде функций"+
+            "с двумя параметрами. Обязательно использовать оператор return.\n"+
+
+            "6. Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation),"+
+            "где arg1, arg2 — значения аргументов, operation — строка с названием операции."+
+            "В зависимости от переданного значения выполнить одну из арифметических операций"+
+            "(использовать функции из пункта 5) и вернуть полученное значение (применить switch).\n"+
+
+            "7. Сравнить null и 0. Объяснить результат.\n"+
+
+            "8. С помощью рекурсии организовать функцию возведения числа в степень. Формат:"+
+            "function power(val, pow), где val — заданное число, pow –— степень."));
+            
+            switch (value) {
+                case 0:
+                    break;
+                case 1:
+                    alert("Потому что уровни приоритетов");
+                    choose();
+                    break;
+                case 2:
+                    alert("5");
+                    choose();
+                    break;
+                case 3: 
+                    task3();
+                    choose();
+                    break;
+                case 4: 
+                    task4();
+                    choose();
+                    break;
+                case 5: 
+                    alert("Что-то не понял, как делать функцию с двумя параметрами, без знака. Сразу перешел к 6 задданию");
+                    choose();
+                    break;
+                case 6: 
+                    let randA = Math.round(Math.random() * 15 );
+                    let a = parseInt(prompt("Введите значение числа а", randA));
+                    let randB = Math.round(Math.random() * 15 );
+                    let b = parseInt(prompt("Введите значение числа b", randB));
+                    let oper = prompt("Введите знак операции", "+");
+                    if (isNaN(a) || isNaN(b)) {
+                        alert("Неверный ввод чисел");
+                        choose();
+                        break;
+                    }
+                    if (b==0 && oper=="/") {
+                        alert("На ноль делить нельзя");
+                        choose();
+                        break;
+                    }
+                    task6(a,b,oper);
+                    choose();
+                    break;
+                case 7: 
+                    task7();
+                    choose();
+                    break;
+                case 8: 
+                    let randVal = Math.round(Math.random() * 15 );
+                    let value = parseInt(prompt("Введите значение числа", randVal));
+                    let randPow = Math.round(Math.random() * 15 );
+                    let power = parseInt(prompt("Введите степень", randPow));
+                    if (isNaN(value) || isNaN(power)) {
+                        alert("Неверный ввод чисел");
+                        choose();
+                        break;
+                    }
+                    alert(task8(value,power));
+                    choose();
+                    break;
+                default:
+                    alert("Неверный ввод числа");
+                    choose();
+            }
+        };
+        choose();
+        function task3() {
+            let randA = Math.round((Math.random() * (100 + 100)) -100); 
+            let randB = Math.round((Math.random() * (100 + 100)) -100);
+            let a = parseInt(prompt("Введите значение числа а", randA));
+            let b = parseInt(prompt("Введите значение числа b", randB));
+            if ( a>=0 && b>=0 ) alert("Разность a и b равна " + (a-b));
+            else if ( a<0 && b<0) alert("Произведение a и b равна " + (a*b));
+            else if ( (a<0 && b>=0) || (a>=0 && b<0)) alert("Сумма a и b равна " + (a+b));
+        }
+        function task4() {
+            let randA = Math.round(Math.random() * 15 );
+            let a = parseInt(prompt("Введите значение числа а", randA));
+            let arr = [];
+            switch (a) {
+                case 0:
+                    arr.push("0");
+                case 1:
+                    arr.push("1");
+                case 2:
+                    arr.push("2");
+                case 3:
+                    arr.push("3");
+                case 4:
+                    arr.push("4");
+                case 5:
+                    arr.push("5");
+                case 6:
+                    arr.push("6");
+                case 7:
+                    arr.push("7");
+                case 8:
+                    arr.push("8");
+                case 9:
+                    arr.push("9");
+                case 10:
+                    arr.push("10");
+                case 11:
+                    arr.push("11");
+                case 12:
+                    arr.push("12");
+                case 13:
+                    arr.push("13");
+                case 14:
+                    arr.push("14");
+                case 15:
+                    arr.push("15");
+            };
+            alert(arr);
+        }
+        function task6(arg1,arg2,operation) {
+            if (operation == "+") alert(arg1 + arg2); 
+            else if (operation == "-") alert(arg1 - arg2); 
+            else if (operation == "/") alert(arg1 / arg2);
+            else if (operation == "*") alert(arg1 * arg2);
+            else alert("Неверный знак операции");
+        }
+        function task7() {
+            alert(
+                "0 == null " + (0 == null)+"\n"+
+                "0 != null " + (0 != null)+"\n"+
+                "0 > null " + (0 > null)+"\n"+
+                "0 < null " + (0 < null)+"\n\n"+
+                "Все легко. Сравниваем разные типы, поэтому такой вывод"
+            );
+        };
+        function task8(val,pow) {
+            if (pow == 0) return 1;
+            return val*task8(val,pow-1);
+        }
+    </script>
+</body>
+</html>
