@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson 3</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <style>
+        /* нет стилей*/
+    </style>
+</head>
+
+<body>
+    <h2>Список заданий</h2>
+    <button id="taskBut" onclick="task()">Убрать</button>
+    <div id="taskBlock" class="active">
+        <ol>
+            <li>С помощью цикла while вывести все простые числа в промежутке от 0 до 100.</li>
+            <li>С этого урока начинаем работать с функционалом интернет-магазина. Предположим, есть сущность корзины.
+                Нужно реализовать функционал подсчета стоимости корзины в зависимости от находящихся в ней товаров.
+            </li>
+            <li>Товары в корзине хранятся в массиве. Задачи:</li>
+            <ol type="a">
+                <li>Организовать такой массив для хранения товаров в корзине;</li>
+                <li>Организовать функцию countBasketPrice, которая будет считать стоимость корзины.</li>
+            </ol>
+            <li>* Вывести с помощью цикла for числа от 0 до 9, не используя тело цикла. Выглядеть это должно так:</li>
+            <li>* Нарисовать пирамиду с 20 рядами с помощью console.log, как показано на рисунке </li>
+            <li>Игра "Быки и коровы"</li>
+        </ol>
+    </div>
+    <h2>Напишите номер задания</h2>
+    <input type="text" id="numberTask">
+    <button id="button" onclick="chooseTask()">Нажать</button>
+
+    <script defer>
+        $('body').append("<div id='task'></div>");
+        
+        function task() {
+            if ($('#taskBlock').attr("class") == "active") {
+                $('#taskBlock').hide("slow");
+                $('#taskBlock').attr("class","none");
+                $('#taskBut').html("Показать");
+            } else if ($('#taskBlock').attr("class") == "none") {
+                $('#taskBlock').show("slow");
+                $('#taskBlock').attr("class","active");
+                $('#taskBut').html("Убрать");
+
+            }
+            
+        }
+        function chooseTask() {
+            let task = +$('#numberTask').val();
+            switch (task) {
+                case 1:
+                    task1();
+                    break;
+                case 2:
+                    task2();
+                    break;
+                case 3:
+                    task3();
+                    break;
+                case 4:
+                    task4();
+                    break;
+                case 5:
+                    task5();
+                    break;
+                case 6:
+                    game();
+                    break;
+                default:
+                    $('#task').html("<p>Введен не верный номер задачи</p>");
+                    break;
+            }
+        }
+
+        function task1() {
+            $('#task').html("");
+            let a = +prompt("Поиск всех простых чисел в диапозоне\nВведите первое число", 0);
+            let b = +prompt("Введите второе число", 100);
+            let str = "<h2> В диапозоне от " + a + " до " + b + " простые числа:</h2>";
+            $('#task').html(str);
+            while (a <= b) {
+                var i = 1;
+                var count = 0;
+
+                while (i <= a || i <= -a) {
+                    if (a % i == 0) {
+                        count++;
+                    }
+                    i++;
+                }
+                if (a == -1 || a == 0 || a == 1) {
+                    count = 2;
+                }
+                if (count == 2) {
+                    $('#task').append(a + "<br>");
+                }
+                a++;
+            }
+        }
+        function task2() {
+            $('#task').html("");
+            $('#task').append(""+
+                "<h2>Корзина</h2>"+
+                "<input id='price' type='text'>Цена<br>"+
+                "<input id='quantity' type='text'>Количество<br>"+
+                "<h3>Стоимость</h3>"+
+                "<p id='think'></p>"+
+                "<button onclick='think()'>Посчитать</button>"
+            );
+        }
+        function think() {
+            $('#think').html('');
+            let cost = +$('#price').val() * +$('#quantity').val();
+            $('#think').append(cost);
+        }
+        function task3() {
+            $('#task').html("");
+            $('#task').append(''+
+                '<h2>Каталог</h2>'+
+                '<div style="background-image: url(https://avatars.mds.yandex.net/get-pdb/38069/8b767a25-b4a1-4705-aff5-167f53e57c7c/s1200);'+
+                'background-size: cover; width: 100px; height: 100px"></div>'+
+                'цена: </br>'+
+                '<input type="text" id="cost1"><br>'+
+                'количество: </br>'+
+                '<input type="text" id="quantity1">'+
+                '<div style="background-image: url(https://avatars.mds.yandex.net/get-pdb/69339/7bfdb24d-b435-45c1-a873-4b0e4be1a0eb/s1200);'+
+                'background-size: cover; width: 100px; height: 100px"></div>'+
+                'цена: </br>'+
+                '<input type="text" id="cost2"><br>'+
+                'количество: </br>'+
+                '<input type="text" id="quantity2">'+
+                '<div style="background-image: url(https://avatars.mds.yandex.net/get-pdb/51720/8dcf9943-574e-44bd-8130-9da9bd3947e4/s1200);'+
+                'background-size: cover; width: 100px; height: 100px"></div>'+
+                'цена: </br>'+
+                '<input type="text" id="cost3"><br>'+
+                'количество: </br>'+
+                '<input type="text" id="quantity3">'+
+                '<br><br>'+
+                '<button id="button" onclick="countBasketPrice()">Посчитать</button>'+
+                '<h3>Корзина</h3>'+
+                '<div id="basket"></div>'
+            );
+        };
+        function countBasketPrice() {
+            $('#basket').html('');
+            let product1 = {
+                price: +$('#cost1').val(),
+                quantity: +$('#quantity1').val(),
+                cost: +$('#cost1').val() * +$('#quantity1').val()              
+            };
+            let product2 = {
+                price: +$('#cost2').val(),
+                quantity: +$('#quantity2').val(),
+                cost: +$('#cost2').val() * +$('#quantity2').val()              
+            };
+            let product3 = {
+                price: +$('#cost3').val(),
+                quantity: +$('#quantity3').val(),
+                cost: +$('#cost3').val() * +$('#quantity3').val()              
+            };
+            let basket = [product1,product2,product3];
+            let str = 'Продукт 1, цена:' + basket[0].price + ', количество: ' + basket[0].quantity + ', стоимость: ' + basket[0].cost + '<br>' +
+                    'Продукт 2, цена:' + basket[1].price + ', количество: ' + basket[1].quantity + ', стоимость: ' + basket[1].cost + '<br>' +
+                    'Продукт 3, цена:' + basket[2].price + ', количество: ' + basket[2].quantity + ', стоимость: ' + basket[2].cost + '<br>' +
+                    'Общая стоимость: ' + (basket[0].cost + basket[1].cost + basket[2].cost);
+            $('#basket').html(str);
+        };
+        function task4() {
+            $('#task').html("");
+            var i=0;
+            var arr=[];
+            for (;;) {
+                if (i>9) break;
+                arr.push(i);
+                i++;
+            }
+            let str = 'for (;;) {<br>'+
+                'if (i>9) break;<br>'+
+                'arr.push(i);<br>'+
+                'i++;<br>'+
+                '}<br>'
+            $('#task').append(str);
+            $('#task').append(arr);
+        }
+        function task5() {
+            $('#task').html("");
+            $('#task').append(''+
+                'Введите высоту пирамиды<br>'+
+                '<input type="text" id="number">'+
+                '<button id="button" onclick="pyramid()">Нажать</button>'+
+                '<div id=pyramid></div>'
+            );
+        };
+        function pyramid() {
+            $('#pyramid').html('');
+            let x = +$('#number').val() ;
+            let star = '*';
+            let length = x * 2 - 1;
+            for (i=1;i<=x;i++) {
+                let space = '';
+                let j = x - i;
+                for (j; j>0; j--) {
+                    space = space + '_';
+                }
+                j--;
+                $('#pyramid').append(space + star + "<br>");
+                star = star + '**';
+            }
+        }
+        var count=0;
+        var a;
+        let victory;
+        function game() {
+            $('#task').html("");
+            $('#task').append('<br>'+
+                'Введите четырехзначное число<br>'+
+                '<input type="text" id="number">'+
+                '<button id="button" onclick="nextStep()">Нажать</button>'
+            );
+            var bulls, cows;
+            a = Guess();
+            $('#task').append(a+'<br>');
+            count=0;
+            victory=false;
+        }
+            
+        function Guess() {
+            var number = '';
+            for (var i=0; i<4; i++) {
+                do 
+                {
+                    var a = Math.floor(Math.random()*(9-0)+0);
+                }
+                while (number.indexOf(a)>=0)
+                number = number + a;
+            }
+            return number;
+        }
+        var bulls;
+        var cows;
+        function Analysis(make, attempt) {
+            bulls=0;
+            cows=0;
+            for (var i=0; i<4; i++) 
+            {
+                if (make[i]==attempt[i]) bulls++;
+                else if (make.indexOf(attempt[i])>=0) cows++;
+            }
+            count++;
+        }
+                    
+        function nextStep() {
+            if (count>=9) {
+                $('#task').append('<br>Вы проиграли');
+                return 0;
+            }
+            if (victory) {
+                $('#task').append('<br>Начните игру заново');
+                return 0;
+            }
+           
+            b = $('#number').val();
+            if (b == 0) {alert('Введите цифры')}
+            else if (b != +b) {alert('Введите цифры')}
+            else if (b.length!=4) {alert('Неверное количество цифр')}
+            else {
+                Analysis(a,b);
+                $('#task').append('<br>Попытка '+count);
+                $('#task').append('<br>'+b+'&emsp;'+bulls+'Б&emsp;'+cows+' К');
+            }
+
+            if (b==a) {
+                $('#task').append('<br><br>Вы победили!<br>Число попыток '+ count);
+                victory=true;
+               
+            }
+        }
+        
+    </script>
+</body>
+
+</html>
