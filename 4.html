@@ -172,19 +172,23 @@
             let obj={};
             let randA = Math.round(Math.random() * (999 - 100) + 100);
             let a = prompt("Введите трехзначное число", randA);
-            if (a.length !== 3 || isNaN(+a)) alert("Неверный ввод числа");
+            if (a < 0 || a > 999 || isNaN(a)) alert("Неверный ввод числа");
+          
             else { a = a.split('');
+                if (a[1] === undefined ) a[1] = 0;
+                if (a[2] === undefined ) a[2] = 0;
                 obj = {
                     unit: a[2],
                     decades: a[1],
                     hundreds: a[0],
                 };
+                $('.task1').remove();
+                $('body').append('<div class="task1"></div>');
+                $('.task1').append('<p>Единицы: ' + obj.unit +'</p>');
+                $('.task1').append('<p>Десятки: ' + obj.decades +'</p>');
+                $('.task1').append('<p>Сотни: ' + obj.hundreds +'</p>');
             };
-            $('.task1').remove();
-            $('body').append('<div class="task1"></div>');
-            $('.task1').append('<p>Единицы: ' + obj.unit +'</p>');
-            $('.task1').append('<p>Десятки: ' + obj.decades +'</p>');
-            $('.task1').append('<p>Сотни: ' + obj.hundreds +'</p>');
+            
         }
         let questions;
         let numberQ;
