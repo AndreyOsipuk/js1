@@ -176,7 +176,11 @@
           
             else { a = a.split('');
                 if (!a[1]) a.unshift(0);
+<<<<<<< HEAD
                 if (!a[2]) a.unshift(0);
+=======
+                if (a[2] === undefined ) a.unshift(0);
+>>>>>>> 3f269bb94108b79a2a506d6ad48ca6718e4caced
                 console.log(a);
                 obj = {
                     unit: a[2],
