@@ -175,8 +175,8 @@
             if (a < 0 || a > 999 || isNaN(a)) alert("Неверный ввод числа");
           
             else { a = a.split('');
-                if (a[1] === undefined ) a.unshift(0);
-                if (a[2] === undefined ) a.unshift(0);
+                if (!a[1]) a.unshift(0);
+                if (!a[2]) a.unshift(0);
                 console.log(a);
                 obj = {
                     unit: a[2],
