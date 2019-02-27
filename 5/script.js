@@ -96,4 +96,20 @@ $($cell).click(function() {
         }
     }
     beforeCell = $(this);
+    cursor();
 });
+let whiteCell = $('.whiteCell');
+let blackCell = $('.blackCell');
+cursor();
+function cursor() {
+    for (i=0; i<$('.whiteCell').length; i++) {
+        if ($(whiteCell[i]).html() != '') {
+            $(whiteCell[i]).css({cursor: 'pointer'});
+        }
+    }
+    for (i=0; i<$('.blackCell').length; i++) {
+        if ($(blackCell[i]).html() != '') {
+            $(blackCell[i]).css({cursor: 'pointer'});
+        }
+    }
+}
