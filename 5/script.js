@@ -8,13 +8,13 @@ let chess = '<div class="chess"></div>';
 let cell = '<div class="cell"></div>';
 $('body').append(table);
 $('.table').append(wordsWrap).append(numberWrap).append(chess).append(numberWrap).append(wordsWrap);
-for (i=0; i<8; i++) {
+for (i = 0; i < 8; i++) {
     $('.wordsWrap').append(word);
 }
-for (i=0; i<8; i++) {
+for (i = 0; i < 8; i++) {
     $('.numberWrap').append(number);
 }
-for (i=0; i<64; i++) {
+for (i = 0; i < 64; i++) {
     $('.chess').append(cell);
 }
 let letters = 'abcdefgh';
@@ -38,10 +38,14 @@ let whiteFigureblock1 = $('.cell').splice(8, 8);
 let blackFigureblock1 = $('.cell').splice(48, 8);
 let blackFigureblock2 = $('.cell').splice(56, 8);
 //Заполнение цифр на доске
-for (i=0; i<9; i++) {
+for (i = 0; i < 9; i++) {
     $(number1[i]).html(numbers[i]);
-    $(number2[i]).html(numbers[i]).css({transform: 'rotate(180deg)'});
-    $(word1[i]).html(letters[i]).css({transform: 'rotate(180deg)'});
+    $(number2[i]).html(numbers[i]).css({
+        transform: 'rotate(180deg)'
+    });
+    $(word1[i]).html(letters[i]).css({
+        transform: 'rotate(180deg)'
+    });
     $(word2[i]).html(letters[i]);
     $(whiteFigureblock2[i]).html(whiteFigure2[i]);
     $(whiteFigureblock1[i]).html(whiteFigure1);
@@ -50,24 +54,24 @@ for (i=0; i<9; i++) {
 }
 //Заполняю ячейки цветами
 let check = true;
-for (i=0, j=0; i<64; i+=2) {
-    if (i%8 == 0 && i != 0) {
+for (i = 0, j = 0; i < 64; i += 2) {
+    if (i % 8 == 0 && i != 0) {
         i--;
-        $($('.cell')[i+1]).addClass('whiteCell');
+        $($('.cell')[i + 1]).addClass('whiteCell');
         continue;
     }
-    if ( (i+1)%8 == 0 ) {
+    if ((i + 1) % 8 == 0) {
         $($('.cell')[i]).addClass('blackCell');
         i++;
     }
     $($('.cell')[i]).addClass('blackCell');
-    $($('.cell')[i+1]).addClass('whiteCell');
+    $($('.cell')[i + 1]).addClass('whiteCell');
 }
 let activeCell;
 let beforeCell = $('.cell')[0];
 let click = 0;
 //Логика перемещения фигур
-$($('.cell')).click(function() {
+$($('.cell')).click(function () {
     activeCell = $(this);
     $(beforeCell).removeClass('active');
     if (click == 0) {
@@ -86,10 +90,13 @@ $($('.cell')).click(function() {
     cursor();
 });
 cursor();
+
 function cursor() {
-    for (i=0; i<$('.cell').length; i++) {
+    for (i = 0; i < $('.cell').length; i++) {
         if ($($('.cell')[i]).html() != '') {
-            $($('.cell')[i]).css({cursor: 'pointer'});
+            $($('.cell')[i]).css({
+                cursor: 'pointer'
+            });
         }
     }
 }
