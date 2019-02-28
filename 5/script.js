@@ -53,24 +53,25 @@ for (i = 0; i < 9; i++) {
     $(blackFigureblock2[i]).html(blackFigure2[i]);
 }
 //Заполняю ячейки цветами
-let check = true;
-for (i = 0, j = 0; i < 64; i += 2) {
-    if (i % 8 == 0 && i != 0) {
-        i--;
-        $($('.cell')[i + 1]).addClass('whiteCell');
-        continue;
+for (i = 0; i < 8; i++) {
+    for (j = 0; j < 8; j++) {
+        if (i % 2 == 0) {
+            if ((i * 8 + j) % 2 == 0) {
+                $($('.cell')[i * 8 + j + 1]).addClass('blackCell');
+                $($('.cell')[i * 8 + j]).addClass('whiteCell');
+            }
+        } else {
+            if ((i * 8 + j) % 2 == 0) {
+                $($('.cell')[i * 8 + j]).addClass('blackCell');
+                $($('.cell')[i * 8 + j + 1]).addClass('whiteCell');
+            }
+        }
     }
-    if ((i + 1) % 8 == 0) {
-        $($('.cell')[i]).addClass('blackCell');
-        i++;
-    }
-    $($('.cell')[i]).addClass('blackCell');
-    $($('.cell')[i + 1]).addClass('whiteCell');
-}
+};
+//Логика перемещения фигур
 let activeCell;
 let beforeCell = $('.cell')[0];
 let click = 0;
-//Логика перемещения фигур
 $($('.cell')).click(function () {
     activeCell = $(this);
     $(beforeCell).removeClass('active');
