@@ -1,3 +1,22 @@
+//Создание структуры HTML
+let table = '<div class="table"></div>';
+let wordsWrap = '<div class="wordsWrap"></div>';
+let word = '<div class="word"></div>';
+let numberWrap = '<div class="numberWrap"></div>';
+let number = '<div class="number"></div>';
+let chess = '<div class="chess"></div>';
+let cell = '<div class="cell"></div>';
+$('body').append(table);
+$('.table').append(wordsWrap).append(numberWrap).append(chess).append(numberWrap).append(wordsWrap);
+for (i=0; i<8; i++) {
+    $('.wordsWrap').append(word);
+}
+for (i=0; i<8; i++) {
+    $('.numberWrap').append(number);
+}
+for (i=0; i<64; i++) {
+    $('.chess').append(cell);
+}
 let letters = 'abcdefgh';
 letters = letters.toUpperCase().split('');
 let numbers = '12345678'
