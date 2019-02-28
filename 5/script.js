@@ -9,7 +9,7 @@ let blackFigure1 = '&#9823;';
 let blackFigure2 = '&#9820; &#9822; &#9821; &#9819; &#9818; &#9821; &#9822; &#9820;';
 whiteFigure2 = whiteFigure2.split(' ');
 blackFigure2 = blackFigure2.split(' ');
-//Создание массивов ячеек 
+//Создание массивов ячеек
 let number1 = $('.number').splice(0, 8);
 let number2 = $('.number').splice(8, 8);
 let word1 = $('.word').splice(0, 8);
